@@ -1,167 +1,161 @@
 #include <GL/glut.h>
 
-float anguloX = 0.0f;
-float anguloY = 0.0f;
-float anguloZ = 0.0f;
+int anguloX = 0;
+int anguloY = 0;
+int anguloZ = 0;
 
 void iniciar() {
-    glEnable(GL_DEPTH_TEST);  // Habilitar prueba de profundidad
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);  // Fondo negro
-
-    // Deshabilitar iluminación para ver los colores originales
-    glDisable(GL_LIGHTING);
-
-    // Habilitar sombreado plano
-    glShadeModel(GL_FLAT);
+    glEnable(GL_DEPTH_TEST);  // activamos prueba de profundidad
+    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 }
 
-void dibujarRectanguloVertical() {
+void Tronco() {
     glBegin(GL_QUADS);
 
     // Cara frontal (Z+)
     glColor3f(1.0f, 0.0f, 0.0f);  // Rojo
-    glVertex3f(-0.1f, -0.5f, 0.1f);
-    glVertex3f(0.1f, -0.5f, 0.1f);
-    glVertex3f(0.1f, 0.3f, 0.1f);
-    glVertex3f(-0.1f, 0.3f, 0.1f);
+    glVertex3i(-1, -5, 1);  // Vértice inferior izquierdo
+    glVertex3i(1, -5, 1);   // Vértice inferior derecho
+    glVertex3i(1, 3, 1);    // Vértice superior derecho
+    glVertex3i(-1, 3, 1);   // Vértice superior izquierdo
 
     // Cara trasera (Z-)
     glColor3f(0.0f, 1.0f, 0.0f);  // Verde
-    glVertex3f(-0.1f, -0.5f, -0.1f);
-    glVertex3f(-0.1f, 0.3f, -0.1f);
-    glVertex3f(0.1f, 0.3f, -0.1f);
-    glVertex3f(0.1f, -0.5f, -0.1f);
+    glVertex3i(-1, -5, -1);  // Vértice inferior izquierdo
+    glVertex3i(-1, 3, -1);   // Vértice superior izquierdo
+    glVertex3i(1, 3, -1);    // Vértice superior derecho
+    glVertex3i(1, -5, -1);   // Vértice inferior derecho
 
     // Cara izquierda (X-)
     glColor3f(0.0f, 0.0f, 1.0f);  // Azul
-    glVertex3f(-0.1f, -0.5f, -0.1f);
-    glVertex3f(-0.1f, -0.5f, 0.1f);
-    glVertex3f(-0.1f, 0.3f, 0.1f);
-    glVertex3f(-0.1f, 0.3f, -0.1f);
+    glVertex3i(-1, -5, -1);  // Vértice trasero inferior izquierdo
+    glVertex3i(-1, -5, 1);   // Vértice frontal inferior izquierdo
+    glVertex3i(-1, 3, 1);    // Vértice frontal superior izquierdo
+    glVertex3i(-1, 3, -1);   // Vértice trasero superior izquierdo
 
     // Cara derecha (X+)
     glColor3f(1.0f, 1.0f, 0.0f);  // Amarillo
-    glVertex3f(0.1f, -0.5f, -0.1f);
-    glVertex3f(0.1f, 0.3f, -0.1f);
-    glVertex3f(0.1f, 0.3f, 0.1f);
-    glVertex3f(0.1f, -0.5f, 0.1f);
+    glVertex3i(1, -5, -1);  // Vértice trasero inferior derecho
+    glVertex3i(1, 3, -1);   // Vértice trasero superior derecho
+    glVertex3i(1, 3, 1);    // Vértice frontal superior derecho
+    glVertex3i(1, -5, 1);   // Vértice frontal inferior derecho
 
     // Cara superior (Y+)
-    glColor3f(0.0f, 1.0f, 1.0f);  // Cian
-    glVertex3f(-0.1f, 0.3f, -0.1f);
-    glVertex3f(-0.1f, 0.3f, 0.1f);
-    glVertex3f(0.1f, 0.3f, 0.1f);
-    glVertex3f(0.1f, 0.3f, -0.1f);
+    glColor3f(0.0f, 1.0f, 1.0f);  // Celeste claro
+    glVertex3i(-1, 3, -1);  // Vértice trasero superior izquierdo
+    glVertex3i(-1, 3, 1);   // Vértice frontal superior izquierdo
+    glVertex3i(1, 3, 1);    // Vértice frontal superior derecho
+    glVertex3i(1, 3, -1);   // Vértice trasero superior derecho
 
     // Cara inferior (Y-)
-    glColor3f(1.0f, 0.0f, 1.0f);  // Magenta
-    glVertex3f(-0.1f, -0.5f, -0.1f);
-    glVertex3f(0.1f, -0.5f, -0.1f);
-    glVertex3f(0.1f, -0.5f, 0.1f);
-    glVertex3f(-0.1f, -0.5f, 0.1f);
+    glColor3f(1.0f, 0.0f, 1.0f);  // Rosa brillante (fucsia)
+    glVertex3i(-1, -5, -1);  // Vértice trasero inferior izquierdo
+    glVertex3i(1, -5, -1);   // Vértice trasero inferior derecho
+    glVertex3i(1, -5, 1);    // Vértice frontal inferior derecho
+    glVertex3i(-1, -5, 1);   // Vértice frontal inferior izquierdo
 
     glEnd();
+
 }
 
-void dibujarRectanguloHorizontal() {
+void Sombrero() {
     glBegin(GL_QUADS);
 
     // Cara frontal (Z+)
     glColor3f(1.0f, 0.0f, 0.0f);  // Rojo
-    glVertex3f(-0.5f, 0.3f, 0.1f);
-    glVertex3f(0.5f, 0.3f, 0.1f);
-    glVertex3f(0.5f, 0.1f, 0.1f);
-    glVertex3f(-0.5f, 0.1f, 0.1f);
+    glVertex3i(-5, 3, 1);  // Vértice superior izquierdo
+    glVertex3i(5, 3, 1);   // Vértice superior derecho
+    glVertex3i(5, 1, 1);   // Vértice inferior derecho
+    glVertex3i(-5, 1, 1);  // Vértice inferior izquierdo
 
     // Cara trasera (Z-)
     glColor3f(0.0f, 1.0f, 0.0f);  // Verde
-    glVertex3f(-0.5f, 0.3f, -0.1f);
-    glVertex3f(-0.5f, 0.1f, -0.1f);
-    glVertex3f(0.5f, 0.1f, -0.1f);
-    glVertex3f(0.5f, 0.3f, -0.1f);
+    glVertex3i(-5, 3, -1);  // Vértice superior izquierdo
+    glVertex3i(-5, 1, -1);  // Vértice inferior izquierdo
+    glVertex3i(5, 1, -1);   // Vértice inferior derecho
+    glVertex3i(5, 3, -1);   // Vértice superior derecho
 
     // Cara izquierda (X-)
     glColor3f(0.0f, 0.0f, 1.0f);  // Azul
-    glVertex3f(-0.5f, 0.3f, -0.1f);
-    glVertex3f(-0.5f, 0.3f, 0.1f);
-    glVertex3f(-0.5f, 0.1f, 0.1f);
-    glVertex3f(-0.5f, 0.1f, -0.1f);
+    glVertex3i(-5, 3, -1);  // Vértice trasero superior izquierdo
+    glVertex3i(-5, 3, 1);   // Vértice frontal superior izquierdo
+    glVertex3i(-5, 1, 1);   // Vértice frontal inferior izquierdo
+    glVertex3i(-5, 1, -1);  // Vértice trasero inferior izquierdo
 
     // Cara derecha (X+)
     glColor3f(1.0f, 1.0f, 0.0f);  // Amarillo
-    glVertex3f(0.5f, 0.3f, -0.1f);
-    glVertex3f(0.5f, 0.1f, -0.1f);
-    glVertex3f(0.5f, 0.1f, 0.1f);
-    glVertex3f(0.5f, 0.3f, 0.1f);
+    glVertex3i(5, 3, -1);  // Vértice trasero superior derecho
+    glVertex3i(5, 1, -1);  // Vértice trasero inferior derecho
+    glVertex3i(5, 1, 1);   // Vértice frontal inferior derecho
+    glVertex3i(5, 3, 1);   // Vértice frontal superior derecho
 
     // Cara superior (Y+)
-    glColor3f(0.0f, 1.0f, 1.0f);  // Cian
-    glVertex3f(-0.5f, 0.3f, -0.1f);
-    glVertex3f(-0.5f, 0.3f, 0.1f);
-    glVertex3f(0.5f, 0.3f, 0.1f);
-    glVertex3f(0.5f, 0.3f, -0.1f);
+    glColor3f(0.0f, 1.0f, 1.0f);  // Celeste claro
+    glVertex3i(-5, 3, -1);  // Vértice trasero superior izquierdo
+    glVertex3i(-5, 3, 1);   // Vértice frontal superior izquierdo
+    glVertex3i(5, 3, 1);    // Vértice frontal superior derecho
+    glVertex3i(5, 3, -1);   // Vértice trasero superior derecho
 
     // Cara inferior (Y-)
-    glColor3f(1.0f, 0.0f, 1.0f);  // Magenta
-    glVertex3f(-0.5f, 0.1f, -0.1f);
-    glVertex3f(-0.5f, 0.1f, 0.1f);
-    glVertex3f(0.5f, 0.1f, 0.1f);
-    glVertex3f(0.5f, 0.1f, -0.1f);
+    glColor3f(1.0f, 0.0f, 1.0f);  // Rosa brillante (fucsia)
+    glVertex3i(-5, 1, -1);  // Vértice trasero inferior izquierdo
+    glVertex3i(-5, 1, 1);   // Vértice frontal inferior izquierdo
+    glVertex3i(5, 1, 1);    // Vértice frontal inferior derecho
+    glVertex3i(5, 1, -1);   // Vértice trasero inferior derecho
 
     glEnd();
+
+
 }
 
 void mostrar() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
-    gluLookAt(0.0, 0.0, 3.0,  // Posición de la cámara
-        0.0, 0.0, 0.0,  // Punto al que la cámara mira
-        0.0, 1.0, 0.0); // Vector arriba
+    gluLookAt(0, 0, 20,  // Posición de la cámara
+        0, 0, 0,  // Punto al que la cámara mira
+        0, 10, 0); // Vector arriba
 
-    glRotatef(anguloX, 1.0f, 0.0f, 0.0f);
-    glRotatef(anguloY, 0.0f, 1.0f, 0.0f);
-    glRotatef(anguloZ, 0.0f, 0.0f, 1.0f);
+    glRotatef(anguloX, 1, 0, 0);
+    glRotatef(anguloY, 0, 1, 0);
+    glRotatef(anguloZ, 0, 0, 1);
 
-    dibujarRectanguloVertical();
-    dibujarRectanguloHorizontal();
+    Tronco();
+    Sombrero();
 
     glutSwapBuffers();
 }
 
+
 void redimensionar(int ancho, int alto) {
-    if (alto == 0) alto = 1;
+    if (alto == 0) {
+        alto = 1;
+    }
     float relacionAspecto = (float)ancho / (float)alto;
 
-    glViewport(0, 0, ancho, alto);
+    glViewport(0, 0, ancho, alto); //la T se renderizara en toda la ventana
 
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    gluPerspective(45.0f, relacionAspecto, 0.1f, 100.0f);
+    glMatrixMode(GL_PROJECTION); //modo de proyeccion en una matriz
+    glLoadIdentity(); //limpiar transformaciones
+    gluPerspective(35, relacionAspecto, 0.1f, 100.0f); //para la perpectica 
 
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
+    glMatrixMode(GL_MODELVIEW); //indicar que la matriz estara afectada
+    glLoadIdentity(); //modelo de vista reestablecido a estado neutral
 }
 
-void tecladoEspecial(int tecla, int x, int y) {
+void moviendoConTeclas(int tecla, int x, int y) {
     switch (tecla) {
     case GLUT_KEY_RIGHT:
-        anguloY += 5.0f;
+        anguloY += 5;
         break;
     case GLUT_KEY_LEFT:
-        anguloY -= 5.0f;
+        anguloY -= 5;
         break;
     case GLUT_KEY_UP:
-        anguloX -= 5.0f;
+        anguloX -= 5;
         break;
     case GLUT_KEY_DOWN:
-        anguloX += 5.0f;
-        break;
-    case GLUT_KEY_F1:
-        anguloZ += 5.0f;
-        break;
-    case GLUT_KEY_F2:
-        anguloZ -= 5.0f;
+        anguloX += 5;
         break;
     }
     glutPostRedisplay();
@@ -171,15 +165,18 @@ int main(int argc, char** argv) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     glutInitWindowSize(800, 600);
+    glutInitWindowPosition(50, 50);
     glutCreateWindow("Tarea de Programacion Grafica #1");
 
     iniciar();
 
     glutDisplayFunc(mostrar);
     glutReshapeFunc(redimensionar);
-    glutSpecialFunc(tecladoEspecial);
+    glutSpecialFunc(moviendoConTeclas);
 
     glutMainLoop();
     return 0;
 }
+
+
 
