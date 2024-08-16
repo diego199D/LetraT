@@ -9,103 +9,97 @@ void iniciar() {
     glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 }
 
-void Tronco() {
+void Letra() {
     glBegin(GL_QUADS);
+    //tronco
+    //parte frontal
+    glColor3f(0.0f, 0.0f, 1.0f);  // azul
+    glVertex3i(-1, -5, 1);
+    glVertex3i(1, -5, 1);
+    glVertex3i(1, 3, 1);
+    glVertex3i(-1, 3, 1);
 
-    // Cara frontal (Z+)
-    glColor3f(1.0f, 0.0f, 0.0f);  // Rojo
-    glVertex3i(-1, -5, 1);  // Vértice inferior izquierdo
-    glVertex3i(1, -5, 1);   // Vértice inferior derecho
-    glVertex3i(1, 3, 1);    // Vértice superior derecho
-    glVertex3i(-1, 3, 1);   // Vértice superior izquierdo
+    //parte de atras
+    glColor3f(1.0f, 0.0f, 0.0f); //rojo
+    glVertex3i(-1, -5, -1);
+    glVertex3i(1, -5, -1);
+    glVertex3i(1, 3, -1);
+    glVertex3i(-1, 3, -1);
 
-    // Cara trasera (Z-)
-    glColor3f(0.0f, 1.0f, 0.0f);  // Verde
-    glVertex3i(-1, -5, -1);  // Vértice inferior izquierdo
-    glVertex3i(-1, 3, -1);   // Vértice superior izquierdo
-    glVertex3i(1, 3, -1);    // Vértice superior derecho
-    glVertex3i(1, -5, -1);   // Vértice inferior derecho
+    //lateral izquierda
+    glColor3f(1.0f, 0.0f, 1.5f); //color lila
+    glVertex3i(-1, -5, -1);
+    glVertex3i(-1, -5, 1);
+    glVertex3i(-1, 3, 1);
+    glVertex3i(-1, 3, -1);
 
-    // Cara izquierda (X-)
-    glColor3f(0.0f, 0.0f, 1.0f);  // Azul
-    glVertex3i(-1, -5, -1);  // Vértice trasero inferior izquierdo
-    glVertex3i(-1, -5, 1);   // Vértice frontal inferior izquierdo
-    glVertex3i(-1, 3, 1);    // Vértice frontal superior izquierdo
-    glVertex3i(-1, 3, -1);   // Vértice trasero superior izquierdo
+    //lateral derecha
+    glColor3f(1.0f, 0.0f, 1.5f); //color lila
+    glVertex3i(1, -5, -1);
+    glVertex3i(1, -5, 1);
+    glVertex3i(1, 3, 1);
+    glVertex3i(1, 3, -1);
 
-    // Cara derecha (X+)
-    glColor3f(1.0f, 1.0f, 0.0f);  // Amarillo
-    glVertex3i(1, -5, -1);  // Vértice trasero inferior derecho
-    glVertex3i(1, 3, -1);   // Vértice trasero superior derecho
-    glVertex3i(1, 3, 1);    // Vértice frontal superior derecho
-    glVertex3i(1, -5, 1);   // Vértice frontal inferior derecho
+    //tapa de arriba
+    glColor3f(1.0f, 1.0f, 0.0f); //color amarillo
+    glVertex3i(1, 3, 1);
+    glVertex3i(-1, 3, 1);
+    glVertex3i(-1, 3, -1);
+    glVertex3i(1, 3, -1);
 
-    // Cara superior (Y+)
-    glColor3f(0.0f, 1.0f, 1.0f);  // Celeste claro
-    glVertex3i(-1, 3, -1);  // Vértice trasero superior izquierdo
-    glVertex3i(-1, 3, 1);   // Vértice frontal superior izquierdo
-    glVertex3i(1, 3, 1);    // Vértice frontal superior derecho
-    glVertex3i(1, 3, -1);   // Vértice trasero superior derecho
+    //tapa de abajo
+    glColor3f(1.0f, 1.0f, 0.0f); //color amarillo
+    glVertex3i(1, -5, 1);
+    glVertex3i(-1, -5, 1);
+    glVertex3i(-1, -5, -1);
+    glVertex3i(1, -5, -1);
 
-    // Cara inferior (Y-)
-    glColor3f(1.0f, 0.0f, 1.0f);  // Rosa brillante (fucsia)
-    glVertex3i(-1, -5, -1);  // Vértice trasero inferior izquierdo
-    glVertex3i(1, -5, -1);   // Vértice trasero inferior derecho
-    glVertex3i(1, -5, 1);    // Vértice frontal inferior derecho
-    glVertex3i(-1, -5, 1);   // Vértice frontal inferior izquierdo
+
+    //Sombrero de la T
+    //parte frontal
+    glColor3f(0.0f, 0.0f, 1.0f);
+    glVertex3i(-4, 3, 1);
+    glVertex3i(-4, 5, 1);
+    glVertex3i(4, 5, 1);
+    glVertex3i(4, 3, 1);
+
+    //parte tracera
+    glColor3f(1.0f, 0.0f, 0.0f);
+    glVertex3i(-4, 3, -1);
+    glVertex3i(-4, 5, -1);
+    glVertex3i(4, 5, -1);
+    glVertex3i(4, 3, -1);
+
+    //tapa de la derecha
+    glColor3f(1.0f, 0.0f, 1.5f); //color lila
+    glVertex3i(-4, 3, -1);
+    glVertex3i(-4, 5, -1);
+    glVertex3i(-4, 5, 1);
+    glVertex3i(-4, 3, 1);
+
+    //tapa de la izquierda
+    glColor3f(1.0f, 0.0f, 1.5f); //color lila
+    glVertex3i(4, 3, -1);
+    glVertex3i(4, 5, -1);
+    glVertex3i(4, 5, 1);
+    glVertex3i(4, 3, 1);
+
+    //tapon superior del sombrero
+    glColor3f(1.0f, 1.0f, 0.0f); //color amarillo
+    glVertex3i(-4, 5, -1);
+    glVertex3i(-4, 5, 1);
+    glVertex3i(4, 5, 1);
+    glVertex3i(4, 5, -1);
+
+    //tapon inferior del sombrero
+    glColor3f(1.0f, 1.0f, 0.0f);
+    glVertex3i(-4, 3, -1);
+    glVertex3i(-4, 3, 1);
+    glVertex3i(4, 3, 1);
+    glVertex3i(4, 3, -1);
+
 
     glEnd();
-
-}
-
-void Sombrero() {
-    glBegin(GL_QUADS);
-
-    // Cara frontal (Z+)
-    glColor3f(1.0f, 0.0f, 0.0f);  // Rojo
-    glVertex3i(-5, 3, 1);  // Vértice superior izquierdo
-    glVertex3i(5, 3, 1);   // Vértice superior derecho
-    glVertex3i(5, 1, 1);   // Vértice inferior derecho
-    glVertex3i(-5, 1, 1);  // Vértice inferior izquierdo
-
-    // Cara trasera (Z-)
-    glColor3f(0.0f, 1.0f, 0.0f);  // Verde
-    glVertex3i(-5, 3, -1);  // Vértice superior izquierdo
-    glVertex3i(-5, 1, -1);  // Vértice inferior izquierdo
-    glVertex3i(5, 1, -1);   // Vértice inferior derecho
-    glVertex3i(5, 3, -1);   // Vértice superior derecho
-
-    // Cara izquierda (X-)
-    glColor3f(0.0f, 0.0f, 1.0f);  // Azul
-    glVertex3i(-5, 3, -1);  // Vértice trasero superior izquierdo
-    glVertex3i(-5, 3, 1);   // Vértice frontal superior izquierdo
-    glVertex3i(-5, 1, 1);   // Vértice frontal inferior izquierdo
-    glVertex3i(-5, 1, -1);  // Vértice trasero inferior izquierdo
-
-    // Cara derecha (X+)
-    glColor3f(1.0f, 1.0f, 0.0f);  // Amarillo
-    glVertex3i(5, 3, -1);  // Vértice trasero superior derecho
-    glVertex3i(5, 1, -1);  // Vértice trasero inferior derecho
-    glVertex3i(5, 1, 1);   // Vértice frontal inferior derecho
-    glVertex3i(5, 3, 1);   // Vértice frontal superior derecho
-
-    // Cara superior (Y+)
-    glColor3f(0.0f, 1.0f, 1.0f);  // Celeste claro
-    glVertex3i(-5, 3, -1);  // Vértice trasero superior izquierdo
-    glVertex3i(-5, 3, 1);   // Vértice frontal superior izquierdo
-    glVertex3i(5, 3, 1);    // Vértice frontal superior derecho
-    glVertex3i(5, 3, -1);   // Vértice trasero superior derecho
-
-    // Cara inferior (Y-)
-    glColor3f(1.0f, 0.0f, 1.0f);  // Rosa brillante (fucsia)
-    glVertex3i(-5, 1, -1);  // Vértice trasero inferior izquierdo
-    glVertex3i(-5, 1, 1);   // Vértice frontal inferior izquierdo
-    glVertex3i(5, 1, 1);    // Vértice frontal inferior derecho
-    glVertex3i(5, 1, -1);   // Vértice trasero inferior derecho
-
-    glEnd();
-
-
 }
 
 void mostrar() {
@@ -120,8 +114,7 @@ void mostrar() {
     glRotatef(anguloY, 0, 1, 0);
     glRotatef(anguloZ, 0, 0, 1);
 
-    Tronco();
-    Sombrero();
+    Letra();
 
     glutSwapBuffers();
 }
